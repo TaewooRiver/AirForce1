@@ -1,5 +1,6 @@
 import heapq
-
+food_times = [3, 1, 2]
+k = 5
 
 def solution(food_times, k):
     if sum(food_times) <= k:
@@ -19,3 +20,5 @@ def solution(food_times, k):
         
     result = sorted(q, key = lambda x: x[1])
     return result[(k - sum_value) % length][1]
+
+print(solution(food_times, k))
