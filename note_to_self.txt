@@ -1,3 +1,3 @@
 Alias for NDB Python Execution
 
-alias npy="python /workspace/AirForce1/NDB/test.py"
+alias npy="python3 /workspace/AirForce1/NDB/test.py"
