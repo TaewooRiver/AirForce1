@@ -1,28 +1,24 @@
-"""
-import sys
-put = sys.stdin.readline
-cases = int(input())
-for _ in range(cases):
-    n, m = map(int, put().split())
-    data = list(map(int, input().split()))
-    count = 0
-    turn = m
-    while data:
-        temp = data[0]
-        if temp == max(data):
-            data.pop(0)
-            count += 1
-            turn -= 1
-            if turn == -1:
-                break
-        else:
-            data.pop(0)
-            data.append(temp)
-            turn -= 1
-            if turn == -1:
-                turn = len(data) - 1
-        
-    print(count)
-"""
+import heapq
 
-print("d")
+def solution(food_times, k):
+    h = []
+    answer = -1
+    for i in range(len(food_times)):
+        heapq.heappush(h, (food_times[i], i + 1))
+    
+    food_num = len(food_times)
+    previous = 0
+
+    while h:
+        t = (h[0][0] - previous) * food_num
+        if k >= t:
+            k -= t
+            previous, _ = heapq.heappop(h)
+            food_num -= 1
+        else:
+            idx = k % food_num
+            h.sort(key = lambda x: x[1])
+            answer = h[idx][1]
+            break
+
+    return answer
